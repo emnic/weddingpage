@@ -1,17 +1,18 @@
 db:
-  image: mongo
+  image: 'mongo:latest'
+  command: '--smallfiles --logpath=/dev/null'
   ports:
-    - "27017:27017"
-  command: "--smallfiles --logpath=/dev/null"
+    - '27017:27017'
 web:
-  build: .
-  command: npm start
-#  volumes:
-#    - .:/usr/src/app
-#    - /usr/src/app/node_modules
-  ports:
-    - "3000:3000"
+  image: 'emnic/weddingpage:latest'
+  volumes:
+    - './public:/usr/src/app/public'
+    - './routes:/usr/src/app/routes'
+    - './views:/usr/src/app/views'    
+  command: 'npm start'
+  environment:
+    - PORT=3000
   links:
     - db
-  environment:
-    PORT: 3000 # this is optional, allows express to use process.env.PORT instead of a raw 3000
+  ports:
+    - '3000:3000'
