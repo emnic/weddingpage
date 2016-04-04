@@ -1,29 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Weddingpage</title>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>Weddingpage</title>
+    <!-- Load css in head not scripts -->
+    <link href="/stylesheets/cssreset.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" />
+    <link href="/stylesheets/site.css" rel="stylesheet" />
 </head>
-<body>
-<div>
-<div>
-<nav class="navbar navbar-inverse" role="navigation" style="padding-left:130px;">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Startsida<span class="sr-only">(current)</span></a></li>
-    </ul>
-</nav>
-</div>
-<br/>
-<div class="jumbotron" style="padding-left:10px;"> 
-<p>
-  Här kommer det att komma upp information inom kort rörande det stundande brölloppet
-</p>
-</div>
-</div>
+
+<body ng-app="brollop">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" data-ui-sref="home.startpage">Startsida</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a data-ui-sref="home.church">Kyrkan</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a data-ui-sref="home.party">Festen</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a data-ui-sref="home.living">Boende</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                      <li>
+                          <a data-ui-sref="home.contact">Kontakta Oss</a>
+                      </li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row" id="content">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div data-ui-view></div>
+            </div>
+        </div>
+        <div class="row" id="footer">
+            <hr />
+            <p class="text-left">&copy; Emil o Matildas Bröllopssida - 2016</p>
+        </div>
+
+    </div>
+     
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="javascripts/vendor/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="javascripts/vendor/bootstrap.min.js"></script>
+    <script src="javascripts/vendor/angular.min.js"></script>
+    <script src="javascripts/vendor/angular-animate.min.js"></script>
+    <script src="javascripts/vendor/angular-resource.min.js"></script>
+    <script src="javascripts/vendor/angular-ui-router.min.js"></script>
+    <script src="javascripts/vendor/ui-bootstrap-tpls-0.13.0.min.js"></script>
+
+    <!--Load main module-->
+    <script src="javascripts/app/app.js"></script>
+    <!--Load configs -->
+    <script src="javascripts/app/config.js"></script>
+    <!--Load services-->
+    <!--Load controllers-->
+    <script src="javascripts/app/controllers/contactController.js"></script>
+    <script src="javascripts/app/controllers/churchController.js"></script>
+    <script src="javascripts/app/controllers/homeController.js"></script>
+    <script src="javascripts/app/controllers/partyController.js"></script>
+    <script src="javascripts/app/controllers/startpageController.js"></script>
+    <script src="javascripts/app/controllers/livingController.js"></script>
+    <!--Load filters-->
+    <!--Load directives-->
 </body>
 </html>
