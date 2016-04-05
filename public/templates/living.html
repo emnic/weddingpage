@@ -1,110 +1,108 @@
-       <script>
+<script>
            
-      function initMapChurch() {
-        //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+function initMapChurch() {
+  //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-        var myLatLng = {lat: 56.243424, lng: 12.860100};
+  var myLatLng = {lat: 56.293525, lng: 12.919066};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: myLatLng
+  });
 
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            center: myLatLng
-          });
-          setMarkers(map);
-      }
+  setMarkers(map);
+}
           
- // Data for the markers consisting of a name, a LatLng and a zIndex for the
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
-var parkingLots = [
-  ['Stadshuset', 56.241856, 12.867013, 7],
-  ['Stationen', 56.246940, 12.854413, 6],
-  ['Mejeritomten', 56.244520, 12.865641, 5],
-  ['Parkskolan', 56.245185, 12.864793, 4],
-  ['ICA Supermarket', 56.245608, 12.862282, 3],
-  ['Centrum', 56.243206, 12.863432, 2],
-  ['Vakteln', 56.242314, 12.860724, 1]
+var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var churchIcon = iconBase + 'church_maps.png'
+var hotelIcon = 'images/hotel.png'
+
+var livings = [
+  ['Erikslund', 56.193904, 12.854848, 5, hotelIcon],
+  ['Riverside Hotell', 56.242876, 12.863321, 1, hotelIcon],
+  ['Valhallpark Hotell', 56.286594, 12.845615, 3, hotelIcon],
+  ['Margretetorp', 56.335885, 12.889503, 2, hotelIcon],
+  ['Ängelholms Kyrka', 56.243424, 12.860100, 4, churchIcon]
 ];
  
 function setMarkers(map) {
   // Adds markers to the map.
-
-  // Marker sizes are expressed as a Size of X,Y where the origin of the image
-  // (0,0) is located in the top left of the image.
-
-  // Origins, anchor positions and coordinates of the marker increase in the X
-  // direction to the right and in the Y direction down.
-  var image = {
-    url: 'templates/parking.jpeg',
-    // This marker is 20 pixels wide by 32 pixels high.
-    size: new google.maps.Size(32, 32),
-    // The origin for this image is (0, 0).
-    origin: new google.maps.Point(0, 0),
-    // The anchor for this image is the base of the flagpole at (0, 32).
-    anchor: new google.maps.Point(0, 32)
-  };
-  // Shapes define the clickable region of the icon. The type defines an HTML
-  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-  // The final coordinate closes the poly by connecting to the first coordinate.
+   
   var shape = {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
     type: 'poly'
   };
-    var churchLocation = {lat: 56.243424, lng: 12.860100};
-    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-          var marker = new google.maps.Marker({
-            position: churchLocation,
-            map: map,
-            icon: iconBase + 'church_maps.png',
-            title: 'Ängelholms Kyrka'
-            });
+
+  for (var i = 0; i < livings.length; i++) {
+    var living = livings[i];
     
-  for (var i = 0; i < parkingLots.length; i++) {
-    var parkingLot = parkingLots[i];
+    // Origins, anchor positions and coordinates of the marker increase in the X
+    // direction to the right and in the Y direction down.
+    var image = {
+      url: living[4],
+      
+      // This marker is 20 pixels wide by 32 pixels high.
+      size: new google.maps.Size(32, 32),
+      
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      
+      // The anchor for this image is the base of the flagpole at (0, 32).
+      anchor: new google.maps.Point(0, 32)
+    };
+  
+    // Shapes define the clickable region of the icon. The type defines an HTML
+    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+    // The final coordinate closes the poly by connecting to the first coordinate.   
     var marker = new google.maps.Marker({
-      position: {lat: parkingLot[1], lng: parkingLot[2]},
+      position: {lat: living[1], lng: living[2]},
       map: map,
       icon: image,
       shape: shape,
-      title: parkingLot[0],
-      zIndex: parkingLot[3]
+      title: living[0],
+      zIndex: living[3]
     });
   }
-}         
-      
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMapChurch"></script>
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMapChurch"></script>
 <div class="row" >
-    <div class="container">
-
-
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>Boende</h1>
-        <p class="lead">Var ska man bo någonstans då?</p>
-        <p><div id="map" style="height:300px"></div></p>
+  <div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1>Boende</h1>
+      <p class="lead">Nedan finner ni några hotell i Ängelholm med omnejd. Har man tänkt att stanna mer än en dag kan både Erikslund och Valhall Park rekomenderas då de omfattas av coop:s erbjudande</p>
+      <p><div id="map" style="height:300px"></div></p>
+    </div>
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-lg-4">
+        <h2>Valhall Park</h2>
+        <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
       </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-lg-4">
-          <h2>Safari bug warning!</h2>
-          <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Hitta till kyrkan</h2>
-              
-       </div>
-        <div class="col-lg-4">
-          <h2>Hitta parkering</h2>
-              <div id="map2" style="height:300px"></div>
-        </div>
+      <div class="col-lg-4">
+        <h2>Riverside Hotell</h2>            
       </div>
-
-      <!-- Site footer -->
-      <footer class="footer">
-        <p>&copy; 2015 Company, Inc.</p>
-      </footer>
-
-    </div> <!-- /container -->
+      <div class="col-lg-4">
+        <h2>Erikslund</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <h2>Margretetorp</h2>
+        <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">Se detaljer &raquo;</a></p>
+      </div>
+      <div class="col-lg-4">
+        <h2>Allan i brallan</h2>         
+     </div>
+      <div class="col-lg-4">
+        <h2>Faulty Towers</h2>
+      </div>
+    </div>
+  </div> <!-- /container -->
 </div>
