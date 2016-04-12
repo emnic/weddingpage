@@ -1,1 +1,102 @@
-﻿<span ng-repeat="expense in vm.expenses">{{expense.name}}: {{expense.cost}} {{expense.currency}} {{expense.project.name}}<br/></span>
+﻿<script>
+           
+  function initMapChurch() {
+    
+    //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var myLatLng = {lat: 56.243424, lng: 12.860100};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: myLatLng
+    });
+      
+    setMarkers(map);
+  }
+  
+  // Data for the markers consisting of a name, a LatLng and a zIndex for the
+  // order in which these markers should display on top of each other.
+  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  var churchIcon = iconBase + 'church_maps.png'
+  var parkingIcon = 'images/parking.jpeg'
+
+  // Data for the markers consisting of a name, a LatLng and a zIndex for the
+  // order in which these markers should display on top of each other.
+  var parkingLots = [
+    ['Ängelholms Kyrka', 56.243424, 12.860100, 8, churchIcon],
+    ['Stadshuset', 56.241856, 12.867013, 7, parkingIcon],
+    ['Stationen', 56.246940, 12.854413, 6, parkingIcon],
+    ['Mejeritomten', 56.244520, 12.865641, 5, parkingIcon],
+    ['Parkskolan', 56.245185, 12.864793, 4, parkingIcon],
+    ['ICA Supermarket', 56.245608, 12.862282, 3, parkingIcon],
+    ['Centrum', 56.243206, 12.863432, 2, parkingIcon],
+    ['Vakteln', 56.242314, 12.860724, 1, parkingIcon]
+  ];
+ 
+  function setMarkers(map) {
+    // Adds markers to the map.
+
+
+    // Shapes define the clickable region of the icon. The type defines an HTML
+    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+    // The final coordinate closes the poly by connecting to the first coordinate.
+    var shape = {
+      coords: [1, 1, 1, 20, 18, 20, 18, 1],
+      type: 'poly'
+    };
+      
+    for (var i = 0; i < parkingLots.length; i++) {
+      
+      var parkingLot = parkingLots[i];
+
+      // Marker sizes are expressed as a Size of X,Y where the origin of the image
+      // (0,0) is located in the top left of the image.
+
+      // Origins, anchor positions and coordinates of the marker increase in the X
+      // direction to the right and in the Y direction down.
+      var image = {
+        url: parkingLot[4],
+        // This marker is 20 pixels wide by 32 pixels high.
+        size: new google.maps.Size(32, 32),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(0, 32)
+      };
+
+      var marker = new google.maps.Marker({
+        position: {lat: parkingLot[1], lng: parkingLot[2]},
+        map: map,
+        icon: image,
+        shape: shape,
+        title: parkingLot[0],
+        zIndex: parkingLot[3]
+      });
+    }
+  }         
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMapChurch"></script>
+<div class="row" >
+  <div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1>Ängelholms Kyrka</h1>
+      <p class="lead">Ängelholms kyrka hittar ni mitt i hjärtat av staden. Den nuvarande kyrkan byggdes på 1700-talet på samma plats som kyrkan som danskarna brände ned 1565  <a href="https://www.svenskakyrkan.se/default.aspx?id=692189">Ängelholms Kyrka</a> </p>
+      <p><img src="images/angelholm_church.jpg" alt="Ängelholms Kyrka" style="width:100%;height:100%;"></p>
+    </div>
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-sm-4">
+        <h2>Matilda</h2>
+        Telefonummer: 0737-717717
+      </div>
+      <div class="col-sm-4">
+        <h2>Emil</h2>
+         Telefonnummer: 0739-804435
+      </div>
+      <div class="col-sm-4">
+        <h2>Var bor vi</h2>
+            <div id="map" style="height:300px"></div>
+      </div>
+    </div>
+  </div> <!-- /container -->
+</div>
