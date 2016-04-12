@@ -5,7 +5,7 @@ function initMapChurch() {
 
   var myLatLng = {lat: 56.293525, lng: 12.919066};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 9,
     center: myLatLng
   });
 
@@ -17,13 +17,17 @@ function initMapChurch() {
 var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 var churchIcon = iconBase + 'church_maps.png'
 var hotelIcon = 'images/hotel.png'
+var partyIcon = 'images/party.png'
 
 var livings = [
-  ['Erikslund', 56.193904, 12.854848, 5, hotelIcon],
-  ['Riverside Hotell', 56.242876, 12.863321, 1, hotelIcon],
+  ['Erikslund', 56.193904, 12.854848, 1, hotelIcon],
+  ['Riverside Hotell', 56.242876, 12.863321, 2, hotelIcon],
   ['Valhallpark Hotell', 56.286594, 12.845615, 3, hotelIcon],
-  ['Margretetorp', 56.335885, 12.889503, 2, hotelIcon],
-  ['Ängelholms Kyrka', 56.243424, 12.860100, 4, churchIcon]
+  ['Margretetorp', 56.335, 12.889503, 4, hotelIcon],
+  ['Ängelholms Kyrka', 56.243424, 12.860100, 5, churchIcon],
+  ['Kvinnaböske Krog & Hotell', 56.378692, 12.791793, 6, hotelIcon],
+  ['Rasta Hallandsåsen', 56.389058, 12.936954, 7, hotelIcon],
+  ['Margretetorp', 56.336134, 12.889485, 8, partyIcon]
 ];
  
 function setMarkers(map) {
@@ -77,31 +81,41 @@ function setMarkers(map) {
     </div>
     <!-- Example row of columns -->
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-sm-4">
         <h2>Valhall Park</h2>
-        <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+        <p>Valhall park finner ni strax väster om Ängelholm. Hotellet ingår i Coops hotellerbjudande och finns beläget på den gamla flygflotiljens område brevid Ängelholms flygplats</p>
+        <p><br><a target="_blank" class="btn btn-primary" href="http://hotelvalhallpark.se/" role="button">Hotellets Hemsida &raquo;</a></p>
+        <p><a target="_blank" class="btn btn-primary" href="https://www.coophotellpremie.com/" role="button">Coop &raquo;</a></p>
+        
       </div>
-      <div class="col-lg-4">
-        <h2>Riverside Hotell</h2>            
+      <div class="col-sm-4">
+        <h2>Riverside Hotell</h2> 
+        Mitt i centrum i hjärtat av ängelholm hittar man Riverside hotell. Här kan man völja att bo antigen i vanliga hotellrum eller så kan man dessutom välja lägenhet. Priser varierar efter efterfrågan men en sökning idag 10/4 får jag upp ett dubbelrum för 2 personer för 1280 SEK och en lägenhet för 4 personer för 1800 SEK 
+        <p><br><a target="_blank" class="btn btn-primary" href="http://www.hotelriverside.se/" role="button">Hotellets Hemsida &raquo;</a></p>         
       </div>
-      <div class="col-lg-4">
+      <div class="col-sm-4">
         <h2>Erikslund</h2>
+        Erikslund ligger alldeles söder om Ängelholm, närmare bestämt vid den södra infarten från E6. Vill man göra sig extra fin inför festen, eller varför inte koppla av ordentligt efteråt, så kan man passa pa att ta en tur till hotellets egna SPA. Även detta hotell ingår i COOP:s hotelerbjudnde.
+        <p><br><a target="_blank" class="btn btn-primary" href="http://www.hotellerikslund.se/sv" role="button">Hotellets Hemsida &raquo;</a></p> 
+        <p><a target="_blank" class="btn btn-primary" href="https://www.coophotellpremie.com/" role="button">Coop &raquo;</a></p>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-sm-4">
         <h2>Margretetorp</h2>
-        <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="#" role="button">Se detaljer &raquo;</a></p>
+        <p >Margrete torp är det perfekta valet för den som vill ha krypavstånd hem från festen. Ett standard rum kan man få från 1400 kr per natt ifall man bokar på hotellets hemsida</p>
+        <p><br><a target="_blank" class="btn btn-primary" href="http://www.margretetorp.se/sv/hotell/boka-online.aspx" role="button">Hotellets Hemsida &raquo;</a></p>
       </div>
-      <div class="col-lg-4">
-        <h2>Allan i brallan</h2>         
+      <div class="col-sm-4">
+        <h2>Rasta Hallandsåsen</h2> 
+        Detta alternativ är det som ligger näst närmast festlokalen. Det här hotellet är dessutom ett lite billigare alternativ än de andra. Så det är detta alternativ som man ska välja ifall man vill spendera pengarna i baren istället för att sova bekvämt =).
+        Ett dubbelrum kan man får för runt 750 SEK
+        <p><br><a target="_blank" class="btn btn-primary" href="http://www.rasta.se/hallandsasen/hotell/" role="button">Hotellets Hemsida &raquo;</a></p>      
      </div>
-      <div class="col-lg-4">
-        <h2>Faulty Towers</h2>
+      <div class="col-sm-4">
+        <h2>Kvinnaböske Krog & Hotel</h2>
+        Här är allt guld och gröna skogar. I fall man ska tro traktens kändis i alla fall. Dubbelrum från 1295 SEK
+        <p><br><a target="_blank" class="btn btn-primary" href="http://www.kvinnaboske.se/" role="button">Hotellets Hemsida &raquo;</a></p> 
       </div>
     </div>
   </div> <!-- /container -->
