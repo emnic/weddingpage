@@ -15,20 +15,19 @@ function initMapChurch() {
           
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
-var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-var churchIcon = iconBase + 'church_maps.png'
-var hotelIcon = 'images/hotel.png'
-var partyIcon = 'images/party.png'
+var churchIcon = 'images/ChurchIcon.png'
+var hotelIcon = 'images/BedIcon.png'
+var partyIcon = 'images/PartyIcon.png'
+var partyBedIcon = 'images/PartyBedIcon.png'
 
 var livings = [
-  ['Erikslund', 56.193904, 12.854848, 1, hotelIcon],
+  ['Erikslund', 56.193904, 12.854848, 5, hotelIcon],
   ['Riverside Hotell', 56.242876, 12.863321, 2, hotelIcon],
   ['Valhallpark Hotell', 56.286594, 12.845615, 3, hotelIcon],
-  ['Margretetorp', 56.335, 12.889503, 4, hotelIcon],
-  ['Ängelholms Kyrka', 56.243424, 12.860100, 5, churchIcon],
+  ['Margretetorp', 56.335956, 12.889539, 4, partyBedIcon],
+  ['Ängelholms Kyrka', 56.243424, 12.860100, 1, churchIcon],
   ['Kvinnaböske Krog & Hotell', 56.378692, 12.791793, 6, hotelIcon],
-  ['Rasta Hallandsåsen', 56.389058, 12.936954, 7, hotelIcon],
-  ['Margretetorp', 56.336134, 12.889485, 8, partyIcon]
+  ['Lilton Hotell', 56.243461, 12.857589, 7, hotelIcon]
 ];
  
 function setMarkers(map) {
@@ -48,7 +47,7 @@ function setMarkers(map) {
       url: living[4],
       
       // This marker is 20 pixels wide by 32 pixels high.
-      size: new google.maps.Size(32, 32),
+      //size: new google.maps.Size(32, 32),
       
       // The origin for this image is (0, 0).
       origin: new google.maps.Point(0, 0),
@@ -107,21 +106,28 @@ function setMarkers(map) {
     <div class="row">
       <div class="col-sm-4">
         <h2>Margretetorp</h2>
-        <p>Margrete torp är det perfekta valet för den som vill ha krypavstånd hem från festen. Ett standard rum kan man få från 1400 kr per natt ifall man bokar på hotellets hemsida</p>
-        <p><img src="images/margretetorp.jpeg" alt="Margretetorp" style="width:100%;height:100%;"></p>
+        <p>Margretetorp är det perfekta valet för den som vill ha krypavstånd hem från festen. Ett standard rum kan man få från 1400 kr per natt ifall man bokar på hotellets hemsida</p>
+        <p>
+            <img class="logo visible-lg" src="images/large/margretetorp_lg.jpg" alt="Margretetorp" style="width:100%;height:100%;">
+            <img class="logo visible-md" src="images/medium/margretetorp_md.jpg" alt="Margretetorp" style="width:100%;height:100%;">
+            <img class="logo visible-xs" src="images/small/margretetorp_sm.jpg" alt="Margretetorp" style="width:100%;height:100%;">
+        </p>
         <p><a target="_blank" class="btn btn-primary" href="http://www.margretetorp.se/sv/hotell/boka-online.aspx" role="button">Hotellets Hemsida &raquo;</a></p>
       </div>
       <div class="col-sm-4">
-        <h2>Rasta Hallandsåsen</h2> 
-        <p>Detta alternativ är det som ligger näst närmast festlokalen. Det här hotellet är dessutom ett lite billigare alternativ än de andra. Så det är detta alternativ som man ska välja ifall man vill spendera pengarna i baren istället för att sova bekvämt =).
-        Ett dubbelrum kan man får för runt 750 SEK</p>
-        <p><img src="images/RastaHallandsas.jpg" alt="Margretetorp" style="width:100%;height:100%;"></p>
-        <p><a target="_blank" class="btn btn-primary" href="http://www.rasta.se/hallandsasen/hotell/" role="button">Hotellets Hemsida &raquo;</a></p>      
+        <h2>Hotell Lilton</h2> 
+        <p>Detta hotell finner ni på järnvägsgatan mitt i centrala Ängelholm, bara ett stenkast från kyrkan. Lilton är ett litet familjärt hotell inyst i ett sekelskifteshus</p>
+        <p><img src="images/Lilton.jpg" alt="Margretetorp" style="width:100%;height:100%;"></p>
+        <p><a target="_blank" class="btn btn-primary" href="http://www.hotell-lilton.se" role="button">Hotellets Hemsida &raquo;</a></p>      
      </div>
       <div class="col-sm-4">
         <h2>Kvinnaböske Krog & Hotel</h2>
         <p>Här är allt guld och gröna skogar. I fall man ska tro traktens kändis i alla fall. Dubbelrum från 1295 SEK</p>
-        <p><img src="images/Kvinnaboske.jpg" alt="Margretetorp" style="width:100%;height:100%;"></p>
+        <p>
+            <img class="logo visible-lg" src="images/large/kvinnaboske_lg.jpg" alt="Margretetorp" style="width:100%;height:100%;">
+            <img class="logo visible-md" src="images/medium/kvinnaboske_md.jpg" alt="Margretetorp" style="width:100%;height:100%;">
+            <img class="logo visible-xs" src="images/small/kvinnaboske_sm.jpg" alt="Margretetorp" style="width:100%;height:100%;">
+        </p>
         <p><a target="_blank" class="btn btn-primary" href="http://www.kvinnaboske.se/" role="button">Hotellets Hemsida &raquo;</a></p> 
       </div>
     </div>

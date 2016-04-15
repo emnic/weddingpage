@@ -9,7 +9,7 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function config($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home/church');
+        $urlRouterProvider.otherwise('/home/startpage');
         $stateProvider
             .state("home", {
                 'abstract': true,
