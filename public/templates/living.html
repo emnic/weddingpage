@@ -6,7 +6,8 @@ function initMapChurch() {
   var myLatLng = {lat: 56.293525, lng: 12.919066};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 9,
-    center: myLatLng
+    center: myLatLng,
+    draggable: !("ontouchend" in document)
   });
 
   setMarkers(map);
@@ -55,7 +56,7 @@ function setMarkers(map) {
       // The anchor for this image is the base of the flagpole at (0, 32).
       anchor: new google.maps.Point(0, 32)
     };
-  
+    
     // Shapes define the clickable region of the icon. The type defines an HTML
     // <area> element 'poly' which traces out a polygon as a series of X,Y points.
     // The final coordinate closes the poly by connecting to the first coordinate.   

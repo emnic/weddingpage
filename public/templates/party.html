@@ -19,7 +19,8 @@
     var marker = new google.maps.Marker({
       position: partyLocation,
       map: map,
-      title: 'Margretetorp Gästgivaregård'
+      title: 'Margretetorp Gästgivaregård',
+      draggable: !("ontouchend" in document)
     });
   }         
 </script>

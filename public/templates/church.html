@@ -7,7 +7,8 @@
 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
-        center: myLatLng
+        center: myLatLng,
+        draggable: !("ontouchend" in document)
     });
       
     setMarkers(map);
