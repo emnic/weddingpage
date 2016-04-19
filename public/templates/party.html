@@ -1,28 +1,65 @@
-<script>         
-  function initMapChurch() {
-    //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+<script>
+           
+function initMapChurch() {
+  //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-    var myLatLng = {lat: 56.335885, lng: 12.889503};
+  var myLatLng = {lat: 56.293525, lng: 12.919066};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 9,
+    center: myLatLng,
+    draggable: !("ontouchend" in document)
+  });
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: myLatLng
-    });
+  setMarkers(map);
+}
+          
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+var partyIcon = 'images/PartyIcon.png'
 
-    setMarkers(map);
-  }
+var livings = [
+  ['Margretetorp', 56.335956, 12.889539, 4, partyIcon]
+];
  
-  function setMarkers(map) {
-    // Adds markers to the map.
+function setMarkers(map) {
+  // Adds markers to the map.
+   
+  var shape = {
+    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    type: 'poly'
+  };
 
-    var partyLocation = {lat: 56.335885, lng: 12.889503};
+  for (var i = 0; i < livings.length; i++) {
+    var living = livings[i];
+    
+    // Origins, anchor positions and coordinates of the marker increase in the X
+    // direction to the right and in the Y direction down.
+    var image = {
+      url: living[4],
+      
+      // This marker is 20 pixels wide by 32 pixels high.
+      //size: new google.maps.Size(32, 32),
+      
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      
+      // The anchor for this image is the base of the flagpole at (0, 32).
+      anchor: new google.maps.Point(0, 32)
+    };
+    
+    // Shapes define the clickable region of the icon. The type defines an HTML
+    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+    // The final coordinate closes the poly by connecting to the first coordinate.   
     var marker = new google.maps.Marker({
-      position: partyLocation,
+      position: {lat: living[1], lng: living[2]},
       map: map,
-      title: 'Margretetorp Gästgivaregård',
-      draggable: !("ontouchend" in document)
+      icon: image,
+      shape: shape,
+      title: living[0],
+      zIndex: living[3]
     });
-  }         
+  }
+}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMapChurch"></script>
 <div class="row" >
