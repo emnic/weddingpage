@@ -48,6 +48,12 @@
                 controller: 'contactController',
                 controllerAs: 'vm'
             })
+            .state("home.login", {
+                url: '/login',
+                templateUrl: 'templates/login.html',
+                controller: 'loginController',
+                controllerAs: 'vm'
+            })
     }
 
     run.$inject = ['$rootScope', '$state', '$stateParams'];

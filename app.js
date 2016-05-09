@@ -4,6 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var session  = require('express-session');
+var port     = process.env.PORT || 8080;
 
 var home = require('./routes/home');
 var church = require('./routes/church');
@@ -11,6 +16,8 @@ var party = require('./routes/party');
 var contact = require('./routes/contact');
 var startpage = require('./routes/startpage');
 var living = require('./routes/living');
+var login = require('./routes/login');
+var configDB = require('./config/database.js');
 
 var app = express();
 
@@ -32,6 +39,18 @@ app.use('/party', party);
 app.use('/contact', contact);
 app.use('/startpage', startpage);
 app.use('/living', living);
+app.use('/login', login);
+
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
+
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
