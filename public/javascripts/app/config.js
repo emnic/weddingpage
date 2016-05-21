@@ -42,6 +42,12 @@
                 controller: 'livingController',
                 controllerAs: 'vm'
             })
+            .state("home.application", {
+                url: '/application',
+                templateUrl: 'templates/application.html',
+                controller: 'applicationController',
+                controllerAs: 'vm'
+            })
             .state("home.contact", {
                 url: '/contact',
                 templateUrl: 'templates/contact.html',
