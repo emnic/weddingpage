@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+require('./models/User');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -11,6 +13,7 @@ var party = require('./routes/party');
 var contact = require('./routes/contact');
 var startpage = require('./routes/startpage');
 var living = require('./routes/living');
+var application = require('./routes/application');
 
 var app = express();
 
@@ -26,12 +29,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+mongoose.connect('mongodb://db:27017');
+
 app.use('/', home);
 app.use('/church', church);
 app.use('/party', party);
 app.use('/contact', contact);
 app.use('/startpage', startpage);
 app.use('/living', living);
+app.use('/application', application);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
