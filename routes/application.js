@@ -30,9 +30,9 @@ router.post('/', function(req, res, next) {
             if(err){ return next(err); }
             
             sendConfirmMail(user, res)
-            res.json(user);
         });
     }
+    res.json(user);
 });
 
 function sendConfirmMail(user, res) {
@@ -71,7 +71,7 @@ function createMail(user){
     var ending = 'Bästa hälsingar\nMatilda och Emil';
     if(user.attend){
         var row1 = 'Vad roligt att du ska komma och fira vårt bröllop tillsammans med oss \n\n';
-        var row2 = 'In din anmälan angav du följande information:\n\n';
+        var row2 = 'I din anmälan angav du följande information:\n\n';
         var row3 = 'Förnamn: ' + user.firstname + '\n';
         var row4 = 'Efternamn: ' + user.lastname + '\n';
         var row5 = 'Epost: ' + user.email + '\n';     
@@ -93,7 +93,7 @@ function createMail(user){
         complete = headline + row1 + row2 + row3+ row4 + row5 + row6 + row7 + ending;
     }
     else{
-        var row1 = 'Vad tråkigt att du inte kunde deltaga. Men hoppas att vi kan ses någon annan dag istället \n\n';
+        var row1 = 'Vad tråkigt att du inte kan komma på vårt bröllop.  Vi ses en annan gång istället\n\n';
         complete = headline + row1 + ending;
     }
 
