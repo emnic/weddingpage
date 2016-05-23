@@ -26,10 +26,9 @@
         
         vm.user = {};
         
-        // calling our submit function.
+        // Send data to server.
         vm.submitApplication = function() {
-            console.log(vm.list_of_users)
-        // Posting data to php file
+
         $http({
           method  : 'POST',
           url     : '/application',
@@ -51,15 +50,16 @@
         
     vm.addUser = function () {
         var num_users = vm.list_of_users.length + 1
-        var user = {firstname: "a",
-                    lastname: "a",
-                    attend: true,
-                    transfer: true,
-                    allergies: {laktos: false,
-                                glukose: false,
-                                nuts: false,
-                                vegetarian: false,
-                                other: ""
+        var user = {firstname: "",
+                    lastname: "",
+                    email: "",
+                    attend: false,
+                    transfer: false,
+                    special_food: {laktos: false,
+                                   glukose: false,
+                                   nuts: false,
+                                   vegetarian: false,
+                                   other: ""
                     }
         };
         vm.num_users = num_users;

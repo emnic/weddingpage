@@ -28,53 +28,53 @@
                         <div class="form-inline">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Kommer
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="user.attend" ng-value="true"> Kommer
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Kommer Inte
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="user.attend" ng-value="false" checked="checked"> Kommer Inte
                                 </label>
                             </div>
                         </div>
                         <br>
-                        <div class="checkbox">
+                        <div class="checkbox" ng-show="user.attend">
                             <label>
-                                <input type="checkbox">  Busstransfer till fest
+                                <input type="checkbox" ng-model="user.transfer">  Busstransfer till fest
                             </label>  
                         </div>
                         <div class="form-inline">
-                            <div class="checkbox">
+                            <div class="checkbox" ng-show="user.attend">
                                 <label>
                                     <input type="checkbox" ng-model="checked">  Specialkost
                                 </label>  
                             </div>
                             <br>
-                            <div class="checkbox" ng-show="checked">
+                            <div class="checkbox" ng-show="checked && user.attend">
                                 <label>
-                                    <input type="checkbox" ng-model="user.allergies.laktos">  Laktos
+                                    <input type="checkbox" ng-model="user.special_food.laktos">  Laktos
                                 </label>  
                             </div>
-                            <div class="checkbox" ng-show="checked">
+                            <div class="checkbox" ng-show="checked && user.attend">
                                 <label>  
-                                    <input type="checkbox" ng-model="user.allergies.gluten">  Gluten
+                                    <input type="checkbox" ng-model="user.special_food.glukose">  Gluten
                                 </label>
                             </div>
-                            <div class="checkbox" ng-show="checked">
+                            <div class="checkbox" ng-show="checked && user.attend">
                                 <label> 
-                                    <input type="checkbox" ng-model="user.allergies.nuts">  Nötter
+                                    <input type="checkbox" ng-model="user.special_food.nuts">  Nötter
                                 </label>
                             </div>
-                            <div class="checkbox" ng-show="checked">
+                            <div class="checkbox" ng-show="checked && user.attend">
                                 <label> 
-                                    <input type="checkbox" ng-model="user.vegetarian">  Vegetarisk
+                                    <input type="checkbox" ng-model="user.special_food.vegetarian">  Vegetarisk
                                 </label>
                             </div>
                         </div>
                         <br>
-                        <div class="form-group" ng-show="checked">
+                        <div class="form-group" ng-show="checked && user.attend">
                             <label>Annat:</label>
-                            <input type="text" class="form-control" ng-model="user.allergies.other" name="other"> 
+                            <input type="text" class="form-control" ng-model="user.special_food.other" name="other"> 
                         </div>
                     </form>
                 </div>
