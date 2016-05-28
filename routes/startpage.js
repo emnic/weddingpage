@@ -9,7 +9,7 @@ router.param('startpage', function(req, res, next, id) {
 });
 
 router.get('/', function(req, res, next) {
-    res.json("Hej");
+    res.json("Hejsvejs");
 });
 
 router.post('/', function(req, res, next) {
