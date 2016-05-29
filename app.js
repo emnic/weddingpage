@@ -21,29 +21,10 @@ var methodOverride = require('method-override')
 
 mongoose.connect('mongodb://db:27017');
 
-//==================================================================
-// Define the strategy to be used by PassportJS
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    if (username === "admin" && password === "admin") // stupid example
-      return done(null, {name: "admin"});
-
-    return done(null, false, { message: 'Incorrect username.' });
-  }
-));
-
-// Serialized and deserialized methods when got from session
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-});
+require('./config/passport')(passport); // pass passport for configuration
 
 // Define a middleware function to be used for every secured routes
 var auth = function(req, res, next){
-  console.log('##auth##')
   if (!req.isAuthenticated()) 
     res.send(401);
   else
@@ -89,8 +70,14 @@ app.get('/loggedin', function(req, res) {
   res.send(req.isAuthenticated() ? req.user : '0');
 });
 
+app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/startpage', // redirect to the secure profile section
+    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
+
 // route to log in
-app.post('/login', passport.authenticate('local'), function(req, res) {
+app.post('/login', passport.authenticate('local-login'), function(req, res) {
   res.send(req.user);
 });
 
@@ -111,7 +98,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+//if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -119,8 +106,8 @@ if (app.get('env') === 'development') {
       error: err
     });
   });
-}
-
+//}
+/*
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -130,6 +117,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
+*/
 
 module.exports = app;

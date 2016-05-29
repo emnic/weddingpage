@@ -25,7 +25,7 @@
                     }
                 // Not Authenticated
                 else {
-                  $rootScope.message = 'You need to log in.';
+                  $rootScope.message = 'Du måste logga in';
                   //$timeout(function(){deferred.reject();}, 0);
                   deferred.reject();
                   $location.url('/login');
@@ -143,7 +143,7 @@
         // Logout function is available in any pages
         $rootScope.logout = function(){
             $rootScope.logged_in = false;
-            $rootScope.message = 'Logged out.';
+            $rootScope.message = '';
             $http.post('/logout');
         };
     };

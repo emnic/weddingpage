@@ -26,13 +26,13 @@
           .success(function(user){
             // No error: authentication OK
             $rootScope.logged_in = true;
-            $rootScope.message = 'Authentication successful!';
+            $rootScope.message = 'Hej ' + vm.user.firstname;
             $location.url('/startpage');
           })
           .error(function(){
             // Error: authentication failed
             $rootScope.logged_in = false;;
-            $rootScope.message = 'Authentication failed.';
+            $rootScope.message = 'Inloggningen misslyckades, felaktigt användarnamn eller lösenord';
             $location.url('/login');
           });
         };

@@ -6,38 +6,37 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a data-toggle="collapse" data-target=".navbar-collapse" class="navbar-brand" data-ui-sref="home.startpage">E <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> M</a>
+            <a data-toggle="collapse" data-target=".navbar-collapse" class="navbar-brand" ng-show="$root.logged_in" data-ui-sref="home.startpage">E <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> M</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a data-toggle="collapse" data-target=".navbar-collapse" data-ui-sref="home.church">Kyrkan</a>
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-show="$root.logged_in" data-ui-sref="home.church">Kyrkan</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li>
-                    <a data-toggle="collapse" data-target=".navbar-collapse" data-ui-sref="home.party">Festen</a>
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-show="$root.logged_in" data-ui-sref="home.party">Festen</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li>
-                    <a data-toggle="collapse" data-target=".navbar-collapse" data-ui-sref="home.living">Boende</a>
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-show="$root.logged_in" data-ui-sref="home.living">Boende</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li>
-                    <a data-toggle="collapse" data-target=".navbar-collapse" data-ui-sref="home.application">Anmälan</a>
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-show="$root.logged_in" data-ui-sref="home.application">Anmälan</a>
                 </li>
             </ul>                
             <ul class="nav navbar-nav">
                 <li>
-                    <a data-toggle="collapse" data-target=".navbar-collapse" data-ui-sref="home.contact">Kontakta Oss</a>
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-show="$root.logged_in" data-ui-sref="home.contact">Kontakta Oss</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li>
                     <a data-toggle="collapse" data-target=".navbar-collapse" ng-click="logout()" ng-show="$root.logged_in" data-ui-sref="home.login">Logga Ut</a>
-                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-show="!$root.logged_in" data-ui-sref="home.login">Logga In</a>
                 </li>
             </ul>
         </div>
