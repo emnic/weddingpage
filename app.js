@@ -15,7 +15,7 @@ var party = require('./routes/party');
 var contact = require('./routes/contact');
 var startpage = require('./routes/startpage');
 var living = require('./routes/living');
-var application = require('./routes/application');
+//var application = require('./routes/application');
 var methodOverride = require('method-override')
 
 
@@ -53,7 +53,8 @@ app.use('/party', party);
 app.use('/contact', contact);
 app.use('/startpage', startpage);
 app.use('/living', living);
-app.use('/application', application);
+//app.use('/application', application, auth);
+require('./routes/application')(app, auth);
 
 
 //==================================================================
@@ -101,6 +102,7 @@ app.use(function(req, res, next) {
 //if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.log(err)
     res.render('error', {
       message: err.message,
       error: err

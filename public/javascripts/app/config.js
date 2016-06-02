@@ -16,11 +16,12 @@
 
             // Make an AJAX call to check if the user is logged in
             $http.get('/loggedin').success(function(user){
+                console.log(user)
                 // Authenticated
                 if (user !== '0'){
 
                   //$timeout(deferred.resolve, 0);
-
+                  $rootScope.user = user;
                   deferred.resolve();
                     }
                 // Not Authenticated
