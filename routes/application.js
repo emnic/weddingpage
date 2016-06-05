@@ -10,7 +10,6 @@ module.exports = function(app, auth){
 
     /* GET users listing. */
     app.get('/', function(req, res, next) {
-        console.log('applications')
       User.find(function(err, application){
         if(err){ return next(err); }
         res.json(application);
@@ -25,6 +24,20 @@ module.exports = function(app, auth){
             else {
                 user.updateApplication(req.body, function (err, user) {
                     if (err) return next(err);
+
+                    res.json(user)
+                });
+            }
+        });
+    });
+    app.put('/:user/application/submit', function(req, res, next) {
+         
+        User.findById(req.params.user, function(err, user) {
+            if (!user)
+                return next(new Error('Could not find user'));
+            else {
+                user.submitApplication(req.body, function (err, user) {
+                    if (err) return next(err);
                         for (var i = 0; i < user.applications.length;++i){
                             if (user.applications[i].email != '')
                                 sendConfirmMail(user.applications[i],res);   
@@ -35,7 +48,6 @@ module.exports = function(app, auth){
             }
         });
     });
-
     function sendConfirmMail(user, res) {
 
         // Not the movie transporter!
@@ -99,9 +111,7 @@ module.exports = function(app, auth){
             var row1 = 'Vad tråkigt att du inte kan komma på vårt bröllop.  Vi ses en annan gång istället\n\n';
             complete = headline + row1 + ending;
         }
-
-        
-        
+      
         return complete
     }
 }

@@ -17,3 +17,14 @@ textarea {
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.btn-custom {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #777777;
+  }
+  .btn-custom:hover {
+  	background-color: #EEEEEE;
+    border-color: #fff;
+    color: #FFFFFF;
+  }

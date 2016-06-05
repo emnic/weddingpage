@@ -5,6 +5,7 @@ var UserSchema = mongoose.Schema({
     username: String,
     password: String,
     familyname: String,
+    submitted: Boolean,
     applications: [{
         firstname: String,
         lastname: String,
@@ -34,6 +35,11 @@ UserSchema.methods.validPassword = function(password) {
 
 UserSchema.methods.updateApplication = function(applications, callback) {
   this.applications = applications;
+  this.save(callback);
+};
+
+UserSchema.methods.submitApplication = function(submitStatus, callback) {
+  this.submitted = submitStatus.submitStatus;
   this.save(callback);
 };
 

@@ -9,26 +9,55 @@
 <div class="row">
     <div ng-repeat="attendee in vm.list_of_attendees track by $index">
         <div class="clearfix" ng-if="($index-1)%3==2"></div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="container">
                     <form class="form-horizontal" ng-submit="apply()">
                         <div class="form-group">
-                            <label>Person {{$index+1}}:</label>
+                            <h3>Person {{$index+1}}:
+                            <button id="editApplication" class="btn btn-sm pull-right" ng-class="{true: 'btn-custom', false: 'btn-custom'}[!attendee.editMode]" ng-click="vm.editAttendee(attendee)">
+                            Ändra <span ng-if="!attendee.editMode" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                            <span ng-if="attendee.editMode" class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                            </button>
+                            </h3>
                         </div>
-                        <br>
+                        <br>                     
                         <div class="form-group">
                             <label>Förnamn:</label>
-                            <input type="text" class="form-control" ng-model="attendee.firstname" name="firstname">
+                            <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.firstname}}</p>
+                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.firstname" name="firstname">
                         </div>
                         <div class="form-group">
-                            <label>Efternamn:</label>
-                            <input type="text" class="form-control" ng-model="attendee.lastname" name="lastname">
+                            <label>Efternamn:</label>  
+                            <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.lastname}}</p>
+                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.lastname" name="lastname">
                         </div>
                         <div class="form-group">
-                            <label>E-post:</label>
-                            <input type="text" class="form-control" ng-model="attendee.email" name="email">
+                            <label>E-post:</label> 
+                            <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.email}}</p>
+                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.email" name="email">
                         </div>
-                        <div class="form-inline">
+                        <div class="form-group" ng-show="!attendee.editMode">
+                        <label>Kommer på bröllopet:</label> 
+                        <p ng-show="!attendee.editMode"  class="panel-title"></p>
+                        <p ng-if="attendee.attend" aria-hidden="true">Ja</p>
+                        <p ng-if="!attendee.attend" aria-hidden="true">Nej</p>
+                        </div>
+                        <div class="form-group" ng-show="!attendee.editMode && attendee.attend">
+                        <label>Busstransfer:</label> 
+                        <p ng-show="!attendee.editMode"  class="panel-title"></p>
+                        <p ng-if="attendee.transfer" aria-hidden="true">Ja</p>
+                        <p ng-if="!attendee.transfer" aria-hidden="true">Nej</p>
+                        </div>
+                         <div class="form-group" ng-show="vm.checkSpecialFood(attendee) && !attendee.editMode && attendee.attend">
+                        <label>Specialkost:</label> 
+                        <p ng-show="!attendee.editMode"  class="panel-title"></p>
+                        <p ng-if="attendee.special_food.laktos" aria-hidden="true">Laktos</p>
+                        <p ng-if="attendee.special_food.glukose" aria-hidden="true">Gluten</p>
+                        <p ng-if="attendee.special_food.nuts" aria-hidden="true">Nötter</p>
+                        <p ng-if="attendee.special_food.vegetarian" aria-hidden="true">Vegetariskt</p>
+                        <p ng-if="attendee.special_food.other" aria-hidden="true">Annat</p>
+                        </div>                       
+                        <div class="form-inline" ng-show="attendee.editMode" >
                             <div class="radio">
                                 <label>
                                     <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="attendee.attend" ng-value="true"> Kommer
@@ -41,57 +70,62 @@
                             </div>
                         </div>
                         <br>
-                        <div class="checkbox" ng-show="attendee.attend">
+                        <div class="checkbox" ng-show="attendee.attend && attendee.editMode">
                             <label>
                                 <input type="checkbox" ng-model="attendee.transfer">  Busstransfer till fest
                             </label>  
                         </div>
                         <div class="form-inline">
-                            <div class="checkbox" ng-show="attendee.attend">
+                            <div class="checkbox" ng-show="attendee.attend && attendee.editMode">
                                 <label>
-                                    <input type="checkbox" ng-model="checked">  Specialkost
+                                    <input type="checkbox" ng-model="checked" ng-init="checked = vm.checkSpecialFood(attendee)">  Specialkost
                                 </label>  
                             </div>
                             <br>
-                            <div class="checkbox" ng-show="checked && attendee.attend">
+                            <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label>
                                     <input type="checkbox" ng-model="attendee.special_food.laktos">  Laktos
                                 </label>  
                             </div>
-                            <div class="checkbox" ng-show="checked && attendee.attend">
+                            <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label>  
                                     <input type="checkbox" ng-model="attendee.special_food.glukose">  Gluten
                                 </label>
                             </div>
-                            <div class="checkbox" ng-show="checked && attendee.attend">
+                            <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label> 
                                     <input type="checkbox" ng-model="attendee.special_food.nuts">  Nötter
                                 </label>
                             </div>
-                            <div class="checkbox" ng-show="checked && attendee.attend">
+                            <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label> 
                                     <input type="checkbox" ng-model="attendee.special_food.vegetarian">  Vegetarisk
                                 </label>
                             </div>
                         </div>
                         <br>
-                        <div class="form-group" ng-show="checked && attendee.attend">
+                        <div class="form-group" ng-show="checked && attendee.attend && attendee.editMode">
                             <label>Annat:</label>
                             <input type="text" class="form-control" ng-model="attendee.special_food.other" name="other"> 
                         </div>
                     </form>
-                </div>
-                <button class="btn btn-md btn-primary btn-block" type="button" ng-click="vm.removeAttendee(attendee)">Ta Bort
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                </button>
+                    </div>
+                    <button ng-show="attendee.editMode" class="btn btn-md btn-primary btn-block" type="button" ng-click="vm.removeAttendee(attendee)">Ta Bort
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button> 
+                    <button ng-show="attendee.editMode" class="btn btn-md btn-default btn-block" type="button" ng-click="vm.saveApplication(attendee)">Spara
+                        <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+                    </button>                     
+                
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
         <br>
-        <input class="btn btn-default btn-lg btn-block" type="submit" value="Spara Anmälan" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0">
+        <button ng-if="vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Uppdatera Anmälan
+        <button ng-if="!vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Skicka Anmälan
         <br>
         <br>
     </div>

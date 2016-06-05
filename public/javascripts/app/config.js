@@ -125,6 +125,15 @@
                 },                
                 controllerAs: 'vm'
             })
+            .state("home.thanks", {
+                url: 'thanks',
+                templateUrl: 'templates/thanks.html',
+                controller: 'applicationController',
+                resolve: {
+                    loggedin: checkLoggedin
+                },                
+                controllerAs: 'vm'
+            })
     }
 
     run.$inject = ['$rootScope', '$state', '$stateParams', '$http'];
@@ -136,6 +145,7 @@
                 $rootScope.fromStateParams = fromStateParams;
                 $rootScope.toState = toState;
                 $rootScope.toStateParams = toStateParams;
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
             });
 
         $rootScope.$state = $state;
