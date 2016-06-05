@@ -125,7 +125,9 @@
     <div class="col-sm-4">
         <br>
         <button ng-if="vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Uppdatera Anmälan
+        </button>
         <button ng-if="!vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Skicka Anmälan
+        </button>
         <br>
         <br>
     </div>
