@@ -119,6 +119,9 @@
                 url: '/angelholm',
                 templateUrl: 'templates/angelholm.html',
                 controller: 'angelholmController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }, 
                 controllerAs: 'vm'
             })
             .state("home.contact", {
