@@ -116,6 +116,15 @@
                 },                
                 controllerAs: 'vm'
             })
+            .state("home.angelholm", {
+                url: '/angelholm',
+                templateUrl: 'templates/angelholm.html',
+                controller: 'angelholmController',
+                resolve: {
+                    loggedin: checkLoggedin
+                }, 
+                controllerAs: 'vm'
+            })
             .state("home.contact", {
                 url: 'contact',
                 templateUrl: 'templates/contact.html',
