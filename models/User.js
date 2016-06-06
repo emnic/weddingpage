@@ -6,6 +6,7 @@ var UserSchema = mongoose.Schema({
     password: String,
     familyname: String,
     submitted: Boolean,
+    num_participants: Number,
     applications: [{
         firstname: String,
         lastname: String,
@@ -40,6 +41,7 @@ UserSchema.methods.updateApplication = function(applications, callback) {
 
 UserSchema.methods.submitApplication = function(submitStatus, callback) {
   this.submitted = submitStatus.submitStatus;
+  this.num_participants = submitStatus.numParticipants;
   this.save(callback);
 };
 

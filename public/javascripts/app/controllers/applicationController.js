@@ -16,7 +16,10 @@
                 });
             };
             o.submitApplication = function(user) {
-                return $http.put('/' + user._id + '/application/submit', {submitStatus:user.submitted}).success(function(data){
+                var body = {submitStatus:user.submitted,
+                            numParticipants: user.num_participants};
+
+                return $http.put('/' + user._id + '/application/submit', body).success(function(data){
                     o.submitted = data;
                 });
             };
@@ -25,6 +28,7 @@
         }]);
 
     applicationController.$inject = ['$rootScope','application', '$http'];
+   
 
     function applicationController($rootScope, application, $http) {
         
@@ -33,7 +37,6 @@
         vm.num_attendees = $rootScope.user.applications.length;
         vm.user = $rootScope.user
         vm.editMode = false;
-        
         activate();
 
         function activate() { }
@@ -43,11 +46,11 @@
         // Send data to server.
     vm.saveApplication = function(attendee) {
         attendee.editMode = !attendee.editMode;
+
         application.saveApplication(vm.user,vm.list_of_attendees);
     };
         
     vm.addAttendee = function () {
-        var num_attendees = vm.list_of_attendees.length + 1
         var attendee = {firstname: "",
                         lastname: "",
                         email: "",
@@ -61,7 +64,7 @@
                                        other: ""
                         }
         };
-        vm.num_attendees = num_attendees;
+        vm.num_attendees += 1;
         vm.list_of_attendees.push(attendee)
     };
     vm.editAttendee = function (attendee){
@@ -87,6 +90,15 @@
         if (!vm.user.submitted)
             vm.user.submitted = true;
 
+        var num_attendees = 0;
+        for (var i = 0; i < vm.num_attendees; i++){
+            
+            if (vm.user.applications[i].attend){
+                num_attendees += 1;
+            }
+        }
+
+        vm.user.num_participants = num_attendees;
         application.submitApplication(vm.user);
     };
 }
