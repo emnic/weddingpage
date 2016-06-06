@@ -1,6 +1,8 @@
 db:
   image: 'mongo:latest'
   command: '--smallfiles --logpath=/dev/null'
+  volumes:
+    - '~/database:/data/db'
   ports:
     - '27017:27017'
 web:
@@ -8,7 +10,8 @@ web:
   volumes:
     - './public:/usr/src/app/public'
     - './routes:/usr/src/app/routes'
-    - './views:/usr/src/app/views'    
+    - './views:/usr/src/app/views'
+    - './models:/usr/src/app/models'
   command: 'npm start'
   environment:
     - PORT=3000

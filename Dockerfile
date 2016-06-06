@@ -4,5 +4,6 @@ USER root
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-ADD . /usr/src/app/
+ADD package.json /usr/src/app/
 RUN npm install --unsafe-perm
+ADD . /usr/src/app/

@@ -1,0 +1,95 @@
+<div class="row">
+    <input class="btn btn-default" type="submit" value="Lägg till deltagare" ng-click="vm.addUser()">
+    <br>
+    <br>
+</div>
+<div class="row">
+    <div ng-repeat="user in vm.list_of_users track by $index">
+        <div class="clearfix" ng-if="($index-1)%3==2"></div>
+            <div class="col-sm-3">
+                <div class="container">
+                    <form class="form-horizontal" ng-submit="apply()">
+                        <div class="form-group">
+                            <label>Person {{$index+1}}:</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Förnamn:</label>
+                            <input type="text" class="form-control" ng-model="user.firstname" name="firstname">
+                        </div>
+                        <div class="form-group">
+                            <label>Efternamn:</label>
+                            <input type="text" class="form-control" ng-model="user.lastname" name="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label>E-post:</label>
+                            <input type="text" class="form-control" ng-model="user.email" name="email">
+                        </div>
+                        <div class="form-inline">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="user.attend" ng-value="true"> Kommer
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="user.attend" ng-value="false" checked="checked"> Kommer Inte
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="checkbox" ng-show="user.attend">
+                            <label>
+                                <input type="checkbox" ng-model="user.transfer">  Busstransfer till fest
+                            </label>  
+                        </div>
+                        <div class="form-inline">
+                            <div class="checkbox" ng-show="user.attend">
+                                <label>
+                                    <input type="checkbox" ng-model="checked">  Specialkost
+                                </label>  
+                            </div>
+                            <br>
+                            <div class="checkbox" ng-show="checked && user.attend">
+                                <label>
+                                    <input type="checkbox" ng-model="user.special_food.laktos">  Laktos
+                                </label>  
+                            </div>
+                            <div class="checkbox" ng-show="checked && user.attend">
+                                <label>  
+                                    <input type="checkbox" ng-model="user.special_food.glukose">  Gluten
+                                </label>
+                            </div>
+                            <div class="checkbox" ng-show="checked && user.attend">
+                                <label> 
+                                    <input type="checkbox" ng-model="user.special_food.nuts">  Nötter
+                                </label>
+                            </div>
+                            <div class="checkbox" ng-show="checked && user.attend">
+                                <label> 
+                                    <input type="checkbox" ng-model="user.special_food.vegetarian">  Vegetarisk
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" ng-show="checked && user.attend">
+                            <label>Annat:</label>
+                            <input type="text" class="form-control" ng-model="user.special_food.other" name="other"> 
+                        </div>
+                    </form>
+                </div>
+                <button class="btn btn-md btn-primary btn-block" type="button" ng-click="vm.removeUser(user)">Ta Bort
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <br>
+        <input class="btn btn-default btn-lg btn-block" type="submit" value="Skicka Anmälan" ng-click="vm.submitApplication()" ng-show="vm.num_users > 0">
+        <br>
+        <br>
+    </div>
+</div>
