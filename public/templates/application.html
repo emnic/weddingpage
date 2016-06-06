@@ -11,10 +11,10 @@
         <div class="clearfix" ng-if="($index-1)%3==2"></div>
             <div class="col-sm-4">
                 <div class="container">
-                    <form class="form-horizontal" ng-submit="apply()">
+                    <form name="applicationForm" class="form-horizontal" ng-submit="apply()" novalidate>
                         <div class="form-group">
                             <h3>Deltagare {{$index+1}}:
-                            <button id="editApplication" class="btn btn-sm pull-right" ng-class="{true: 'btn-custom', false: 'btn-custom'}[!attendee.editMode]" ng-click="vm.editAttendee(attendee)">
+                            <button ng-disabled="applicationForm.$invalid" id="editApplication" class="btn btn-sm pull-right" ng-class="{true: 'btn-custom', false: 'btn-custom'}[!attendee.editMode]" ng-click="vm.editAttendee(attendee)">
                             Ändra <span ng-if="!attendee.editMode" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                             <span ng-if="attendee.editMode" class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                             </button>
@@ -24,17 +24,23 @@
                         <div class="form-group">
                             <label>Förnamn:</label>
                             <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.firstname}}</p>
-                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.firstname" name="firstname">
+                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.firstname" name="firstname" required>
+                            <div class="error-message" ng-show="applicationForm.firstname.$error.required && attendee.editMode && !applicationForm.firstname.$pristine">
+    Fyll i ett förnamn!</div>
                         </div>
                         <div class="form-group">
                             <label>Efternamn:</label>  
                             <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.lastname}}</p>
-                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.lastname" name="lastname">
+                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.lastname" name="lastname" required>
+                            <div class="error-message" ng-show="applicationForm.lastname.$error.required && attendee.editMode && !applicationForm.lastname.$pristine">
+    Fyll i ett efternamn!</div>
                         </div>
                         <div class="form-group">
                             <label>E-post:</label> 
                             <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.email}}</p>
-                            <input type="text" ng-show="attendee.editMode" class="form-control" ng-model="attendee.email" name="email">
+                            <input type="email" ng-show="attendee.editMode" class="form-control" ng-model="attendee.email" name="email">
+                            <div class="error-message" ng-show="applicationForm.email.$error.email && !applicationForm.email.$pristine && attendee.editMode">
+    Fyll i korrekt e-post adress!</div>
                         </div>
                         <div class="form-group" ng-show="!attendee.editMode">
                         <label>Kommer på bröllopet:</label> 
@@ -109,14 +115,16 @@
                         <br>
                         <div class="form-group" ng-show="attendee.editMode">
                             <label>Meddelande:</label>
-                            <input type="text" class="form-control" ng-model="attendee.notes" name="notes"> 
+                            <input type="text" class="form-control" ng-model="attendee.notes" name="notes" pattern=".{0,144}"> 
+                              <div class="error-message" ng-show="applicationForm.notes.$error.pattern && !applicationForm.notes.$pristine && attendee.editMode">
+    Maxlängd uppnådd!</div>
                         </div>
                     </form>
                     </div>
                     <button ng-show="attendee.editMode" class="btn btn-md btn-primary btn-block" type="button" ng-click="vm.removeAttendee(attendee)">Ta Bort
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </button> 
-                    <button ng-show="attendee.editMode" class="btn btn-md btn-default btn-block" type="button" ng-click="vm.saveApplication(attendee)">Spara
+                    <button ng-disabled="applicationForm.$invalid" ng-show="attendee.editMode" class="btn btn-md btn-default btn-block" type="button" ng-click="vm.saveApplication(attendee)">Spara
                         <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
                     </button>                     
                 
