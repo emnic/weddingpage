@@ -83,7 +83,7 @@ module.exports = function(app, auth){
     function createMail(user){
         var complete = '';
         var headline = 'Hej ' + user.firstname + ',\n\n';
-        var ending = 'Bästa hälsingar\nMatilda och Emil';
+        var ending = '\n Bästa hälsingar\nMatilda och Emil';
         if(user.attend){
             var row1 = 'Vad roligt att du ska komma och fira vårt bröllop tillsammans med oss \n\n';
             var row2 = 'I din anmälan angav du följande information:\n\n';

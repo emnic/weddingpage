@@ -57,11 +57,11 @@
                         attend: false,
                         transfer: false,
                         editMode: true,
+                        notes: "",
                         special_food: {laktos: false,
                                        glukose: false,
                                        nuts: false,
-                                       vegetarian: false,
-                                       other: ""
+                                       vegetarian: false
                         }
         };
         vm.num_attendees += 1;

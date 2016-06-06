@@ -13,12 +13,12 @@ var UserSchema = mongoose.Schema({
         email: String,
         attend: Boolean,
         transfer: Boolean,
+        notes: String,
         special_food: {
             laktos: Boolean,
             glukose: Boolean,
             nuts: Boolean,
-            vegetarian: Boolean,
-            other: String
+            vegetarian: Boolean
         }
     }]
 });
