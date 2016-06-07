@@ -18,7 +18,8 @@ var UserSchema = mongoose.Schema({
             laktos: Boolean,
             glukose: Boolean,
             nuts: Boolean,
-            vegetarian: Boolean
+            vegetarian: Boolean,
+            other: String
         }
     }]
 });
