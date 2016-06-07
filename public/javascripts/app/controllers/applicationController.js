@@ -61,7 +61,8 @@
                         special_food: {laktos: false,
                                        glukose: false,
                                        nuts: false,
-                                       vegetarian: false
+                                       vegetarian: false,
+                                       other: ""
                         }
         };
         vm.num_attendees += 1;

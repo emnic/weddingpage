@@ -66,6 +66,9 @@
                         <p ng-if="attendee.special_food.glukose" aria-hidden="true">Gluten</p>
                         <p ng-if="attendee.special_food.nuts" aria-hidden="true">Nötter</p>
                         <p ng-if="attendee.special_food.vegetarian" aria-hidden="true">Vegetariskt</p>
+                        <p ng-if="attendee.special_food.other" aria-hidden="true">
+                        {{attendee.special_food.other}}
+                        </p>
                         </div> 
                         <div class="form-group" ng-model="attendee.notes" ng-show="!attendee.editMode">
                         <label>Meddelande: </label> 
@@ -96,6 +99,7 @@
                                 </label>  
                             </div>
                             <br>
+                            <br>
                             <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label>
                                     <input type="checkbox" ng-model="attendee.special_food.laktos">  Laktos
@@ -116,13 +120,25 @@
                                     <input type="checkbox" ng-model="attendee.special_food.vegetarian">  Vegetarisk
                                 </label>
                             </div>
+
+                            <div "form-group" ng-show="checked && attendee.attend && attendee.editMode">
+                                <br>
+                                <label> 
+                                Annat:
+                                </label>
+                                <br>
+                                <input type="text" class="form-control"  ng-model="attendee.special_food.other" name="other" pattern=".{0,144}">
+                                <div class="error-message" ng-show="applicationForm.other.$error.pattern && !applicationForm.other.$pristine && attendee.editMode">
+                                Maxlängd uppnådd!           </div> 
+                            </div>
                         </div>
                         <br>
                         <div class="form-group" ng-show="attendee.editMode">
                             <label>Meddelande:</label>
                             <input type="text" class="form-control" ng-model="attendee.notes" name="notes" pattern=".{0,144}"> 
                               <div class="error-message" ng-show="applicationForm.notes.$error.pattern && !applicationForm.notes.$pristine && attendee.editMode">
-    Maxlängd uppnådd!</div>
+                              Maxlängd uppnådd!         
+                              </div>
                         </div>
                     </form>
                     </div>
