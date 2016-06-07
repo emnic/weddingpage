@@ -3,7 +3,10 @@
         <p>
         För att göra en anmälan lägger man till önskat antal deltagare. När man är färdig klickar man på skicka/uppdatera sin anmälan för att meddela ifall man kommer eller inte:
         </p>
-        <input class="btn btn-primary" type="submit" value="Lägg till deltagare" ng-click="vm.addAttendee()">
+        <p class="text-danger">
+            !!! För tillfället är inte anmälan online aktiv men kommer att aktiveras inom kort !!!
+        </p>
+        <input class="btn btn-primary" type="submit" value="Lägg till deltagare" ng-click="vm.addAttendee()" disabled>
         <br>
         <br>
     </div>
