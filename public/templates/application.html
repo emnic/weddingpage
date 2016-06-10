@@ -1,17 +1,15 @@
 <div class="row">
     <div class="col-sm-12">
         <p>
-        För att göra en anmälan lägger man till önskat antal deltagare. När man är färdig klickar man på skicka/uppdatera sin anmälan för att meddela ifall man kommer eller inte:
+        För att göra en anmälan lägger man till önskat antal deltagare. När man är färdig klickar man på skicka sin anmälan för att meddela ifall man kommer eller inte. 
         </p>
-        <p class="text-danger">
-            !!! För tillfället är inte anmälan online aktiv men kommer att aktiveras inom kort !!!
-        </p>
-        <input class="btn btn-primary" type="submit" value="Lägg till deltagare" ng-click="vm.addAttendee()" disabled>
+
+        <input class="btn btn-primary" type="submit" value="Lägg till deltagare" ng-click="vm.addAttendee()">
         <br>
         <br>
     </div>
 </div>
-<div class="row">
+<div class="row" scroll-glue>
     <div ng-repeat="attendee in vm.list_of_attendees track by $index">
         <div class="clearfix" ng-if="($index-1)%3==2"></div>
             <div class="col-sm-4">
@@ -77,12 +75,12 @@
                         <div class="form-inline" ng-show="attendee.editMode" >
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="attendee.attend" ng-value="true"> Kommer
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="attendee.attend" ng-value="true" checked="checked"> Kommer
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="attendee.attend" ng-value="false" checked="checked"> Kommer Inte
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="attendee.attend" ng-value="false"> Kommer Inte
                                 </label>
                             </div>
                         </div>

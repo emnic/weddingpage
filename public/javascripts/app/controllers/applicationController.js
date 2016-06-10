@@ -54,7 +54,7 @@
         var attendee = {firstname: "",
                         lastname: "",
                         email: "",
-                        attend: false,
+                        attend: true,
                         transfer: false,
                         editMode: true,
                         notes: "",

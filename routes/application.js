@@ -38,9 +38,10 @@ module.exports = function(app, auth){
             else {
                 user.submitApplication(req.body, function (err, user) {
                     if (err) return next(err);
+                        var mail = createMail(user);
                         for (var i = 0; i < user.applications.length;++i){
                             if (user.applications[i].email != '')
-                                sendConfirmMail(user.applications[i],res);   
+                                sendConfirmMail(user.applications[i], res, mail);   
                         }
 
                         res.json(user)
@@ -48,7 +49,7 @@ module.exports = function(app, auth){
             }
         });
     });
-    function sendConfirmMail(user, res) {
+    function sendConfirmMail(user, res, mail) {
 
         // Not the movie transporter!
         var transporter = nodemailer.createTransport({
@@ -66,7 +67,7 @@ module.exports = function(app, auth){
             to: user.email, // list of receivers
             bcc: 'info.angelholmsbrollop@gmail.com',
             subject: 'Tack för ditt svar', // Subject line
-            text: createMail(user) //, // plaintext body
+            text: mail //, // plaintext body
             // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
         };
         transporter.sendMail(mailOptions, function(error, info){
@@ -82,34 +83,52 @@ module.exports = function(app, auth){
 
     function createMail(user){
         var complete = '';
-        var headline = 'Hej ' + user.firstname + ',\n\n';
-        var ending = '\n Bästa hälsingar\nMatilda och Emil';
-        if(user.attend){
-            var row1 = 'Vad roligt att du ska komma och fira vårt bröllop tillsammans med oss \n\n';
-            var row2 = 'I din anmälan angav du följande information:\n\n';
-            var row3 = 'Förnamn: ' + user.firstname + '\n';
-            var row4 = 'Efternamn: ' + user.lastname + '\n';
-            var row5 = 'Epost: ' + user.email + '\n';     
-            var row6 = user.transfer?'Transfer till fest: Ja\n':'';
-            var alg1 = user.special_food.laktos?'Laktos, ':'';
-            var alg2 = user.special_food.glukose?'Glukos, ':'';
-            var alg3 = user.special_food.nuts?'Nötter, ':'';
-            var alg4 = user.special_food.vegetarian?'Vegetariskt, ':'';
-            var alg5 = user.special_food.other;
-            var alg_complete = alg1 + alg2 + alg3 + alg4 + alg5;
-            
-            if (alg_complete){
-                var row7 = 'Specialmat/allergier: ' + alg_complete + '\n\n\n' ;
+        var headline = 'Hej!\n\n';
+        var ending = '\n Bästa hälsingar\nMatilda och Emil\n\n';
+        var ps = "PS\n Kom ihåg att du alltid kan logga in på sidan igen för att ändra din anmälan. Det går bra att ändra/uppdatera din anmälan fram till den 10:e juli."
+        if(user.applications[0].attend){
+            var duni = user.applications.length > 1? 'ni':'du'
+            var row1 = 'Vad roligt att ' + duni + ' ska komma och fira vårt bröllop tillsammans med oss. \n\n';
+            var row2 = 'I anmälan angavs följande information:\n\n';
+            var attendees = '';
+            for (var i=0; i < user.applications.length; ++i){
+                var attendee = user.applications[i];
+                var row3 = 'Förnamn: ' + attendee.firstname + '\n';
+                var row4 = 'Efternamn: ' + attendee.lastname + '\n';
+                var row5 = 'Epost: ' + attendee.email + '\n';
+                var tmp = attendee.attend? 'Ja\n': 'Nej\n';
+                var rowex = 'Kommer: ' + tmp;
+                var row6 = attendee.transfer?'Transfer till fest: Ja\n':'';
+                var alg1 = attendee.special_food.laktos?'Laktos, ':'';
+                var alg2 = attendee.special_food.glukose?'Glukos, ':'';
+                var alg3 = attendee.special_food.nuts?'Nötter, ':'';
+                var alg4 = attendee.special_food.vegetarian?'Vegetariskt, ':'';
+                var alg5 = attendee.special_food.other?attendee.special_food.other:'';
+
+                var alg_complete = alg1 + alg2 + alg3 + alg4 + alg5;
+
+                if (alg_complete){
+                    var row7 = 'Specialmat/allergier: ' + alg_complete + '\n\n\n' ;
+                }
+                else{
+                    var row7 = '\n\n\n';
+                }
+
+                if (attendee.notes){
+                    var head = 'Meddelande:\n'
+                    var message = attendee.notes?attendee.notes +'\n\n' :'';
+                    var row8 = head + message;
+                }
+                else
+                    var row8 = '';
+
+                attendees += 'Deltagare ' + (i+1) + '\n' + row3+ row4 + row5 + rowex + row6 + row7 + row8 + '\n\n';
             }
-            else{
-                var row7 = '';
-            }
-            
-            complete = headline + row1 + row2 + row3+ row4 + row5 + row6 + row7 + ending;
+            complete = headline + row1 + row2 + attendees + ending + ps;
         }
         else{
             var row1 = 'Vad tråkigt att du inte kan komma på vårt bröllop.  Vi ses en annan gång istället\n\n';
-            complete = headline + row1 + ending;
+            complete = headline + row1 + ending + ps;
         }
       
         return complete
