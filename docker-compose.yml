@@ -1,8 +1,6 @@
 db:
   image: 'mongo:latest'
   command: '--smallfiles --logpath=/dev/null'
-  volumes:
-    - '~/database:/data/db'
   ports:
     - '27017:27017'
 web:
