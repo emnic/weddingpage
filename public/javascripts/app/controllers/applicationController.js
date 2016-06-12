@@ -36,7 +36,7 @@
         vm.list_of_attendees = $rootScope.user.applications;
         vm.num_attendees = $rootScope.user.applications.length;
         vm.user = $rootScope.user
-        vm.editMode = false;
+        vm.activeEditMode = false;
         activate();
 
         function activate() { }
@@ -48,6 +48,7 @@
         attendee.editMode = !attendee.editMode;
 
         application.saveApplication(vm.user,vm.list_of_attendees);
+        vm.handleActiveEditMode();
     };
         
     vm.addAttendee = function () {
@@ -67,9 +68,16 @@
         };
         vm.num_attendees += 1;
         vm.list_of_attendees.push(attendee)
+        vm.handleActiveEditMode();
     };
     vm.editAttendee = function (attendee){
-        attendee.editMode = !attendee.editMode;
+        
+        if(attendee.editMode)
+            vm.saveApplication(attendee);
+        else
+            attendee.editMode = !attendee.editMode;
+        
+        vm.handleActiveEditMode();
     };
 
     vm.removeAttendee = function (attendee) {
@@ -77,6 +85,7 @@
         vm.list_of_attendees.splice(index, 1);
         vm.num_attendees -= 1;
         application.saveApplication(vm.user,vm.list_of_attendees);
+        vm.handleActiveEditMode();
     };
 
     vm.checkSpecialFood = function(attendee){
@@ -102,5 +111,17 @@
         vm.user.num_participants = num_attendees;
         application.submitApplication(vm.user);
     };
+    vm.handleActiveEditMode = function(){
+
+        for (var i = 0; i < vm.num_attendees; i++){
+            
+            if (vm.user.applications[i].editMode){
+                vm.activeEditMode = true;
+                break;
+            }
+            else
+                vm.activeEditMode = false;
+        }       
+    }
 }
 })();

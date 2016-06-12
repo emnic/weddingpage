@@ -3,8 +3,8 @@
 
     angular
         .module('brollop')
-        .controller('livingController', livingController)
-        .factory('living', ['$http', function($http){
+        .controller('angelholmController', angelholmController)
+        .factory('angelholm', ['$http', function($http){
             var o = {
               devices: []
             };
@@ -12,9 +12,9 @@
             return o;
         }]);
 
-    livingController.$inject = ['living'];
+    angelholmController.$inject = ['angelholm'];
 
-    function livingController(living) {
+    function angelholmController(angelholm) {
         var vm = this;
 
         activate();
