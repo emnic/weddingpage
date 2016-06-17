@@ -1,0 +1,68 @@
+<div class="row" >
+  	<div class="container">
+		<h3>
+			Översikt
+		</h3>
+		<table class="table table-bordered table-striped">
+		    <thead>
+		    	<tr>
+		    		<th><b>Antal Svar</b></th>
+		        	<th><b>Antal Ja</b></th>
+		        	<th><b>Antal Nej</b></th>
+		        	<th><b>Antal Transfer</b></th>
+		        	<th><b>Antal Laktos</b></th>
+		        	<th><b>Antal Gluten</b></th>
+		        	<th><b>Antal Nötter</b></th>
+		        	<th><b>Antal Vegetarisk</b></th>
+		        	<th><b>Antal Annat</b></th>
+		      	</tr>
+			</thead>
+			<tbody>	
+				<tr>
+					<td><b>{{vm.stats.num_total}}</b></td>
+					<td><b>{{vm.stats.num_yes}}</b></td>
+					<td><b>{{vm.stats.num_no}}</b></td>
+					<td><b>{{vm.stats.num_transfer}}</b></td>
+					<td><b>{{vm.stats.num_laktos}}</b></td>
+					<td><b>{{vm.stats.num_glukose}}</b></td>
+					<td><b>{{vm.stats.num_nuts}}</b></td>
+					<td><b>{{vm.stats.num_vegetarian}}</b></td>
+					<td><b>{{vm.stats.num_other}}</b></td>
+				</tr>	
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<h3>
+			Detaljerat
+		</h3>
+		<table class="table table-bordered table-striped">
+		    <thead>
+		    	<tr>
+		    		<th><b></b></th>
+		        	<th><b>Förnamn</b></th>
+		        	<th><b>Efternamn</b></th>
+		        	<th><b>Epost</b></th>
+		        	<th><b>Deltager</b></th>
+		        	<th><b>Transfer</b></th>
+		        	<th><b>Specialkost</b></th>
+		        	<th><b>Meddelande</b></th>
+		      	</tr>
+			</thead>
+			<tbody>	
+				<tr ng-repeat="attendee in vm.list_of_applications">
+					<td><b>{{$index + 1}}</b></td>
+					<td>{{attendee.firstname}}</td>
+					<td>{{attendee.lastname}}</td>
+					<td>{{attendee.email}}</td>
+					<td>{{attendee.attend?'Ja':'Nej'}}</td>
+					<td>{{attendee.transfer?'Ja':'Nej'}}</td>
+					<td>{{vm.foodToStr(attendee.special_food)}}</td>
+					<td>{{attendee.notes}}</td>
+				</tr>	
+			</tbody>
+		</table>
+		<br>
+		<br>
+	</div>
+</div>

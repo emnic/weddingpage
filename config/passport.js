@@ -64,6 +64,7 @@ module.exports = function(passport) {
                 newUser.submitted = req.body.submitted;
                 newUser.num_participants = req.body.num_participants;
                 newUser.applications = [];
+                newUser.role = req.body.role;
                 
 				// save the user
                 newUser.save(function(err) {

@@ -8,6 +8,7 @@ var UserSchema = mongoose.Schema({
     submitted: Boolean,
     num_participants: Number,
     applications: [{
+        role: String,
         firstname: String,
         lastname: String,
         email: String,

@@ -15,7 +15,6 @@ var party = require('./routes/party');
 var contact = require('./routes/contact');
 var startpage = require('./routes/startpage');
 var living = require('./routes/living');
-//var application = require('./routes/application');
 var methodOverride = require('method-override')
 
 
@@ -55,6 +54,7 @@ app.use('/startpage', startpage);
 app.use('/living', living);
 //app.use('/application', application, auth);
 require('./routes/application')(app, auth);
+require('./routes/admin')(app, auth);
 
 
 //==================================================================
