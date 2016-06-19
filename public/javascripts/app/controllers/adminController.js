@@ -14,6 +14,11 @@
                     o.applications = angular.copy(data);
                 });
             };
+            o.exportToExcel = function() {
+                return $http.get('/admin/applications/excel').success(function(data){
+                    o.applications = angular.copy(data);
+                });
+            };
 
             return o;
         }]);
@@ -45,6 +50,12 @@
                 food_str != ''?food_str += ', ' + special_food.other:food_str += special_food.other;
 
             return food_str;
+        };
+
+        vm.exportToExcel = function() {
+
+            admin.exportToExcel();
+
         };
 
         function _stats() {
