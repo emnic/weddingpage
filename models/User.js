@@ -7,6 +7,7 @@ var UserSchema = mongoose.Schema({
     familyname: String,
     submitted: Boolean,
     num_participants: Number,
+    user_role: String,
     applications: [{
         firstname: String,
         lastname: String,

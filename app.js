@@ -15,7 +15,6 @@ var party = require('./routes/party');
 var contact = require('./routes/contact');
 var startpage = require('./routes/startpage');
 var living = require('./routes/living');
-//var application = require('./routes/application');
 var methodOverride = require('method-override')
 
 
@@ -39,13 +38,14 @@ app.set('view engine', 'ejs');
 
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'gen_files')));
 
 require('./routes/home')(app);
 app.use('/church', church);
@@ -55,6 +55,7 @@ app.use('/startpage', startpage);
 app.use('/living', living);
 //app.use('/application', application, auth);
 require('./routes/application')(app, auth);
+require('./routes/admin')(app, auth);
 
 
 //==================================================================
