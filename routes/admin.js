@@ -13,7 +13,7 @@ module.exports = function(app, auth){
     	var applications = [];
       	User.find({}, 'applications', function(err, application){
         	if(err){ return next(err); }
-        	console.log(application)
+
         	for (var i = 0; i < application.length; ++i){
         		for (var j = 0; j < application[i].applications.length; ++j){
         			applications.push(application[i].applications[j]);
