@@ -90,7 +90,7 @@
                 controllerAs: 'vm'
             })
             .state("home.party", {
-                url: 'party',
+                url: '/party',
                 templateUrl: 'templates/party.html',
                 controller: 'partyController',
                 resolve: {
@@ -117,7 +117,7 @@
                 controllerAs: 'vm'
             })
             .state("home.angelholm", {
-                url: 'angelholm',
+                url: '/angelholm',
                 templateUrl: 'templates/angelholm.html',
                 controller: 'angelholmController',
                 resolve: {
@@ -134,18 +134,6 @@
                 },                
                 controllerAs: 'vm'
             })
-            .state("home.admin", {
-                url: 'admin',
-                templateUrl: 'templates/admin.html',
-                controller: 'adminController',
-                resolve: {
-                    loggedin: checkLoggedin,
-                    resolvedApplications: ['admin', function(applications){
-                        return applications.getApplications();
-                    }]
-                },                
-                controllerAs: 'vm'
-            })            
             .state("home.thanks", {
                 url: 'thanks',
                 templateUrl: 'templates/thanks.html',
