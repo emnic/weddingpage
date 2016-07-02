@@ -10,6 +10,7 @@ web:
     - './routes:/usr/src/app/routes'
     - './views:/usr/src/app/views'
     - './models:/usr/src/app/models'
+    - './gen_files:/usr/src/app/gen_files'
   command: 'npm start'
   environment:
     - PORT=3000

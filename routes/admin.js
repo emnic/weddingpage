@@ -52,11 +52,11 @@ module.exports = function(app, auth){
             { header: 'Antal Ja', key: 'num_yes', width: 16 },
             { header: 'Antal Nej', key: 'num_no', width: 16 },
             { header: 'Antal Transfer', key: 'num_transfer', width: 16 },
-            { header: 'Antal Laktos', key: 'num_laktos', width: 16 },
-            { header: 'Antal Gluten', key: 'num_glukose', width: 16 },
-            { header: 'Antal Nötter', key: 'num_nuts', width: 16 },
-            { header: 'Antal Vegetariskt', key: 'num_vegetarian', width: 32 },
-            { header: 'Antal Annat', key: 'num_other', width: 16 },
+            { header: 'Laktosallergi', key: 'num_laktos', width: 16 },
+            { header: 'Glutenallergi', key: 'num_glukose', width: 16 },
+            { header: 'Nötallergi', key: 'num_nuts', width: 16 },
+            { header: 'Vegetariskt', key: 'num_vegetarian', width: 32 },
+            { header: 'Allergi', key: 'num_other', width: 16 },
         ];
         statistics.getRow(1).font = { bold: true };
         statistics.addRow(stats);

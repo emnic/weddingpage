@@ -10,11 +10,11 @@
 		        	<th><b>Antal Ja</b></th>
 		        	<th><b>Antal Nej</b></th>
 		        	<th><b>Antal Transfer</b></th>
-		        	<th><b>Antal Laktos</b></th>
-		        	<th><b>Antal Gluten</b></th>
-		        	<th><b>Antal Nötter</b></th>
-		        	<th><b>Antal Vegetarisk</b></th>
-		        	<th><b>Antal Annat</b></th>
+		        	<th><b>Laktosallergi</b></th>
+		        	<th><b>Glutenallergi</b></th>
+		        	<th><b>Nötallergi</b></th>
+		        	<th><b>Vegetarisk</b></th>
+		        	<th><b>Annat</b></th>
 		      	</tr>
 			</thead>
 			<tbody>	
@@ -67,6 +67,8 @@
 	</div>
 </div>
 <div class="row" >
-	<a target="_blank" href="Deltagarlista.xlsx" class="btn btn-md btn-default" type="submit" ng-click="vm.exportToExcel()">Exportera Till Excel
-	</a>
+	<div class="container">
+		<a ng-click="vm.exportToExcel()" target="_blank" href="Deltagarlista.xlsx" class="btn btn-md btn-default" type="submit">Exportera Till Excel
+		</a>
+	</div>
 </div>
