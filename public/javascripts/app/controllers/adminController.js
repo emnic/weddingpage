@@ -33,6 +33,14 @@
         vm.stats = _stats();
 
         function activate() { }
+        
+        vm.propertyName = 'firstname';
+        vm.reverse = false;
+
+        vm.sortBy = function(propertyName) {
+          vm.reverse = (vm.propertyName === propertyName) ? !vm.reverse : false;
+          vm.propertyName = propertyName;
+        };
 
         vm.foodToStr = function(special_food) {
 
