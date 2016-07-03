@@ -47,11 +47,11 @@
             var food_str = '';
 
             if (special_food.laktos)
-                food_str = 'Laktos';
+                food_str = 'Laktosallergi';
             if (special_food.glukose)
-                food_str != ''?food_str += ', Gluten':food_str += 'Gluten';
+                food_str != ''?food_str += ', Glutenallergi':food_str += 'Glutenallergi';
             if (special_food.nuts)
-                food_str != ''?food_str += ', Nötter':food_str += 'Nötter';    
+                food_str != ''?food_str += ', Nötallergi':food_str += 'Nötallergi';    
             if (special_food.vegetarian)
                 food_str != ''?food_str += ', Vegetarisk':food_str += 'Vegetarisk';    
             if (special_food.other)

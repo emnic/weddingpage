@@ -39,7 +39,8 @@
     Fyll i ett efternamn!</div>
                         </div>
                         <div class="form-group">
-                            <label>E-post:</label> 
+                            <label ng-show="!attendee.editMode">E-post:</label> 
+                            <label ng-show="attendee.editMode">E-post: <small>(ej obligatorisk)</small></label> 
                             <p ng-show="!attendee.editMode"  class="panel-title">{{attendee.email}}</p>
                             <input type="email" ng-show="attendee.editMode" class="form-control" ng-model="attendee.email" name="email">
                             <div class="error-message" ng-show="applicationForm.email.$error.email && !applicationForm.email.$pristine && attendee.editMode">
@@ -58,11 +59,11 @@
                         <p ng-if="!attendee.transfer" aria-hidden="true">Nej</p>
                         </div>
                          <div class="form-group" ng-show="vm.checkSpecialFood(attendee) && !attendee.editMode && attendee.attend">
-                        <label>Specialkost:</label> 
+                        <label>Specialkost/Allergier:</label> 
                         <p ng-show="!attendee.editMode"  class="panel-title"></p>
-                        <p ng-if="attendee.special_food.laktos" aria-hidden="true">Laktos</p>
-                        <p ng-if="attendee.special_food.glukose" aria-hidden="true">Gluten</p>
-                        <p ng-if="attendee.special_food.nuts" aria-hidden="true">Nötter</p>
+                        <p ng-if="attendee.special_food.laktos" aria-hidden="true">Laktosallergi</p>
+                        <p ng-if="attendee.special_food.glukose" aria-hidden="true">Glutenallergi</p>
+                        <p ng-if="attendee.special_food.nuts" aria-hidden="true">Nötallergi</p>
                         <p ng-if="attendee.special_food.vegetarian" aria-hidden="true">Vegetariskt</p>
                         <p ng-if="attendee.special_food.other" aria-hidden="true">
                         {{attendee.special_food.other}}
@@ -93,24 +94,24 @@
                         <div class="form-inline">
                             <div class="checkbox" ng-show="attendee.attend && attendee.editMode">
                                 <label>
-                                    <input type="checkbox" ng-model="checked" ng-init="checked = vm.checkSpecialFood(attendee)">  Specialkost
+                                    <input type="checkbox" ng-model="checked" ng-init="checked = vm.checkSpecialFood(attendee)">  Specialkost/Allergier
                                 </label>  
                             </div>
                             <br>
                             <br>
                             <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label>
-                                    <input type="checkbox" ng-model="attendee.special_food.laktos">  Laktos
+                                    <input type="checkbox" ng-model="attendee.special_food.laktos">  Laktosallergi
                                 </label>  
                             </div>
                             <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label>  
-                                    <input type="checkbox" ng-model="attendee.special_food.glukose">  Gluten
+                                    <input type="checkbox" ng-model="attendee.special_food.glukose">  Glutenallergi
                                 </label>
                             </div>
                             <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
                                 <label> 
-                                    <input type="checkbox" ng-model="attendee.special_food.nuts">  Nötter
+                                    <input type="checkbox" ng-model="attendee.special_food.nuts">  Nötallergi
                                 </label>
                             </div>
                             <div class="checkbox" ng-show="checked && attendee.attend && attendee.editMode">
