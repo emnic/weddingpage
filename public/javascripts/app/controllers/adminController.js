@@ -23,9 +23,9 @@
             return o;
         }]);
 
-    adminController.$inject = ['admin', 'resolvedApplications'];
+    adminController.$inject = ['$scope', 'admin', 'resolvedApplications', 'ngDialog'];
 
-    function adminController(admin,resolvedApplications) {
+    function adminController($scope, admin,resolvedApplications, ngDialog) {
         var vm = this;
         
         activate();
@@ -37,9 +37,30 @@
         vm.propertyName = 'firstname';
         vm.reverse = false;
 
+        $scope.open = function (message) {
+            ngDialog.open({plain: 'true', template: message, className: 'ngdialog-theme-default'});
+        };
+
         vm.sortBy = function(propertyName) {
           vm.reverse = (vm.propertyName === propertyName) ? !vm.reverse : false;
           vm.propertyName = propertyName;
+        };
+
+        vm.linkText = function(text_message) {
+
+            var max_lenght = 30;
+            var link_text = '';
+
+            if (text_message){
+                if(text_message.length > max_lenght){
+                    link_text = text_message.substr(0, 30) + '...'
+                }
+                else{
+                    link_text = text_message;
+                }
+            }
+
+            return link_text;
         };
 
         vm.foodToStr = function(special_food) {
@@ -65,7 +86,7 @@
             admin.exportToExcel();
 
         };
-
+    
         function _stats() {
 
             var _num_yes        = 0;

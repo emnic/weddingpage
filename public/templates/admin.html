@@ -68,7 +68,7 @@
 					<td>{{attendee.attend?'Ja':'Nej'}}</td>
 					<td>{{attendee.transfer?'Ja':'Nej'}}</td>
 					<td>{{vm.foodToStr(attendee.special_food)}}</td>
-					<td>{{attendee.notes}}</td>
+					<td><a id="via-service2" ng-click="open(attendee.notes)" href="">{{vm.linkText(attendee.notes)}}</a></td>
 				</tr>	
 			</tbody>
 		</table>
