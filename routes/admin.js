@@ -36,12 +36,10 @@ module.exports = function(app, auth){
         		}
         	}
 
-        	createExcelFile(applications);
-        	
-        	res.json("File created")
+        	createExcelFile(applications, res);
       	});
     });
-    function createExcelFile(applications) {
+    function createExcelFile(applications, res) {
     	var workbook = new Excel.Workbook();
 
     	var statistics = workbook.addWorksheet('Sammanställning');
@@ -108,6 +106,7 @@ module.exports = function(app, auth){
 		workbook.xlsx.writeFile('./gen_files/Deltagarlista.xlsx')
     		.then(function() {
         		console.log('File saved'); 
+                res.json("File created")
     		});
     }
     function foodToStr(special_food) {
