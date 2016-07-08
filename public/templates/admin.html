@@ -40,13 +40,13 @@
 		    <thead>
 		    	<tr>
 		    		<th><b></b></th>
-		        	<th>
+		        	<th style="white-space: nowrap">
 		        		<a ng-click="vm.sortBy('firstname')"><b>Förnamn</b>
 		        	 	<span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="vm.propertyName === 'firstname' && vm.reverse"></span>
 		        	 	<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="vm.propertyName === 'firstname' && !vm.reverse"></span>
 		        	 	</a>
 		        	</th>
-		        	<th>
+		        	<th style="white-space: nowrap">
 		        		<a ng-click="vm.sortBy('lastname')"><b>Efternamn</b>
 		        		<span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ng-show="vm.propertyName === 'lastname' && vm.reverse"></span>
 		        	 	<span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ng-show="vm.propertyName === 'lastname' && !vm.reverse"></span>
