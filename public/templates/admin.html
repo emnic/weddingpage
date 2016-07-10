@@ -78,7 +78,9 @@
 </div>
 <div class="row" >
 	<div class="container">
-		<a ng-click="vm.exportToExcel()" target="_blank" href="Deltagarlista.xlsx" class="btn btn-md btn-default" type="submit">Exportera Till Excel
+		<a ng-click="vm.exportToExcel()" class="btn btn-md btn-default" type="submit">Generera Excel
+		</a>
+		<a ng-disabled="noExcelAvailable" target="_blank" href="Deltagarlista.xlsx" class="btn btn-md btn-default" type="submit" ng-click="noExcelAvailable=true">Ladda Ner Excel
 		</a>
 	</div>
 </div>

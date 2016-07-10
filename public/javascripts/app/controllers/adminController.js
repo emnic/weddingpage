@@ -14,8 +14,9 @@
                     o.applications = angular.copy(data);
                 });
             };
-            o.exportToExcel = function() {
+            o.exportToExcel = function($scope) {
                 return $http.get('/admin/applications/excel').success(function(data){
+                    $scope.noExcelAvailable = false;
                     o.applications = angular.copy(data);
                 });
             };
@@ -31,6 +32,7 @@
         activate();
         vm.list_of_applications = resolvedApplications.data;
         vm.stats = _stats();
+        $scope.noExcelAvailable = true;
 
         function activate() { }
         
@@ -83,8 +85,7 @@
 
         vm.exportToExcel = function() {
 
-            admin.exportToExcel();
-
+            admin.exportToExcel($scope);
         };
     
         function _stats() {
