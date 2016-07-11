@@ -61,14 +61,22 @@
 			</thead>
 			<tbody>	
 				<tr ng-repeat="attendee in vm.list_of_applications | orderBy:vm.propertyName:vm.reverse">
-					<td><b>{{$index + 1}}</b></td>
-					<td>{{attendee.firstname}}</td>
-					<td>{{attendee.lastname}}</td>
-					<td>{{attendee.email}}</td>
-					<td>{{attendee.attend?'Ja':'Nej'}}</td>
-					<td>{{attendee.transfer?'Ja':'Nej'}}</td>
-					<td>{{vm.foodToStr(attendee.special_food)}}</td>
-					<td><a id="via-service2" ng-click="open(attendee.notes)" href="">{{vm.linkText(attendee.notes)}}</a></td>
+					<td class="text-danger" ng-show="!attendee.attend"><b>{{$index + 1}}</b></td>
+					<td ng-show="attendee.attend"><b>{{$index + 1}}</b></td>
+					<td class="text-danger" ng-show="!attendee.attend">{{attendee.firstname}}</td>
+					<td ng-show="attendee.attend">{{attendee.firstname}}</td>
+					<td class="text-danger" ng-show="!attendee.attend">{{attendee.lastname}}</td>
+					<td ng-show="attendee.attend">{{attendee.lastname}}</td>
+					<td class="text-danger" ng-show="!attendee.attend">{{attendee.email}}</td>
+					<td ng-show="attendee.attend">{{attendee.email}}</td>
+					<td class="text-danger" ng-show="!attendee.attend">{{attendee.attend?'Ja':'Nej'}}</td>
+					<td ng-show="attendee.attend">{{attendee.attend?'Ja':'Nej'}}</td>
+					<td class="text-danger" ng-show="!attendee.attend">{{attendee.transfer?'Ja':'Nej'}}</td>
+					<td ng-show="attendee.attend">{{attendee.transfer?'Ja':'Nej'}}</td>
+					<td class="text-danger" ng-show="!attendee.attend">{{vm.foodToStr(attendee.special_food)}}</td>
+					<td ng-show="attendee.attend">{{vm.foodToStr(attendee.special_food)}}</td>
+					<td class="text-danger" ng-show="!attendee.attend"><a id="via-service2" ng-click="open(attendee.notes)" href="">{{vm.linkText(attendee.notes)}}</a></td>
+					<td ng-show="attendee.attend"><a id="via-service2" ng-click="open(attendee.notes)" href="">{{vm.linkText(attendee.notes)}}</a></td>
 				</tr>	
 			</tbody>
 		</table>
