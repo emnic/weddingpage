@@ -3,8 +3,17 @@
         <p>
         För att göra en anmälan lägger man till önskat antal deltagare. När man är färdig klickar man på skicka sin anmälan för att meddela ifall man kommer eller inte. 
         </p>
-
-        <input class="btn btn-primary" type="submit" value="Lägg till deltagare" ng-click="vm.addAttendee()">
+        <br>
+        <br>
+        <p class="text-danger">
+            Det är inte möjligt att uppdatera sin anmälan via hemsidan längre. Önskar ni ändra något, kontakta Emil eller Matilda direkt via mail eller telefon. 
+            <br>
+            Kontaktuppgifter hittar ni <a data-ui-sref="home.contact">här</a>
+            <br>
+            <br>
+            <br>
+        </p>
+        <input ng-disabled="true" class="btn btn-primary" type="submit" value="Lägg till deltagare" ng-click="vm.addAttendee()">
         <br>
         <br>
     </div>
@@ -17,7 +26,7 @@
                     <form name="applicationForm" class="form-horizontal" ng-submit="apply()" novalidate>
                         <div class="form-group">
                             <h3>Deltagare {{$index+1}}:
-                            <button ng-disabled="applicationForm.$invalid" id="editApplication" class="btn btn-sm pull-right" ng-class="{true: 'btn-custom', false: 'btn-custom'}[!attendee.editMode]" ng-click="vm.editAttendee(attendee)">
+                            <button ng-disabled="true" id="editApplication" class="btn btn-sm pull-right" ng-class="{true: 'btn-custom', false: 'btn-custom'}[!attendee.editMode]" ng-click="vm.editAttendee(attendee)">
                             Ändra <span ng-if="!attendee.editMode" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                             <span ng-if="attendee.editMode" class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                             </button>
@@ -155,9 +164,9 @@
 <div class="row">
     <div class="col-sm-4">
         <br>
-        <button ng-disabled="vm.activeEditMode" ng-if="vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Uppdatera Anmälan
+        <button ng-disabled="true" ng-if="vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Uppdatera Anmälan
         </button>
-        <button ng-disabled="vm.activeEditMode" ng-if="!vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Skicka Anmälan
+        <button ng-disabled="true" ng-if="!vm.user.submitted" class="btn btn-md btn-default btn-block" type="submit" ng-click="vm.submitApplication()" ng-show="vm.num_attendees > 0" data-ui-sref="home.thanks">Skicka Anmälan
         </button>
         <br>
         <br>
